@@ -25,15 +25,23 @@ class Effect extends Card {
     }
     Effect(el) {
         if (el instanceof Unit) {
-        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        console.log(el);
-        console.log(this.name +" was played on " + el.name);
-        el.resilience += this.magnitude; 
-        console.log(el);
+        if(this.stat == "resilience") {
+            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            console.log(el);
+            console.log(this.name +" was played on " + el.name);
+            el.resilience += this.magnitude; 
+            console.log(el);
+        }
+        else if (this.stat == "power") {
+            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            console.log(el);
+            console.log(this.name +" was played on " + el.name);
+            el.power += this.magnitude;
+            console.log(el);
+        }
         } else {
             throw new Error('Target must be a unit!');
         }
-
     }
 }
 
