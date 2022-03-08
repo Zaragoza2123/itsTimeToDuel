@@ -7,22 +7,6 @@ class Card {
     }
 }
 
-class Effect extends Card {
-    constructor(name, cost, text, stat, magnitude) {
-        super(name, cost);
-        this.text = text;
-        this.stat = stat;
-        this.magnitude = magnitude;
-    }
-    Effect(el) {
-        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        console.log(el)
-        console.log(this.name +" was played on " + el.name)
-        el.resilience += this.magnitude; 
-        console.log(el)
-    }
-}
-
 class Unit extends Card {
     constructor(name,cost, power, resilience) {
     super(name, cost);
@@ -31,6 +15,28 @@ class Unit extends Card {
     }
 
 }
+
+class Effect extends Card {
+    constructor(name, cost, text, stat, magnitude) {
+        super(name, cost);
+        this.text = text;
+        this.stat = stat;
+        this.magnitude = magnitude;
+    }
+    Effect(el) {
+        if (el instanceof Unit) {
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        console.log(el);
+        console.log(this.name +" was played on " + el.name);
+        el.resilience += this.magnitude; 
+        console.log(el);
+        } else {
+            throw new Error('Target must be a unit!');
+        }
+
+    }
+}
+
 //Turn 1
 const red_ninja = new Unit("Red Belt Ninja", 3, 3, 4);
 const effect1 = new Effect("Hard Algorithm", 2, "increase target's resilience by 2", 'resilience', +3);
